@@ -7,6 +7,7 @@ import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
 import axios from '../../axios-orders';
 import Spinner from "../../components/UI/Spinner/Spinner";
 import withErrorHandler from "../../hoc/WithErrorHandler/WithErrorHandler";
+import keys from "../../keys/keys";
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -25,7 +26,8 @@ class BurgerBuilder extends Component {
         error: false
     }
     componentDidMount () {
-        axios.get("https://create-react-burger-70598.firebaseio.com/Ingredients.json")
+        console.log(keys.FIREBASE_INGREDIENTS_BASEURL)
+        axios.get(keys.FIREBASE_INGREDIENTS_BASEURL)
             .then(response => {
                 console.log(response)
                 this.setState({ingredients: response.data})
